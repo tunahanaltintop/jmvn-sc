@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tun</groupId>
+    <artifactId>jmvn-sc</artifactId>
+    <version>1.0</version>
+
+    <properties>
+        <jaxwsplugin.version>2.6</jaxwsplugin.version>
+        <jaxwsrt.version>2.2.10</jaxwsrt.version>
+
+        <log4j.version>2.14.1</log4j.version>
+        <commonscodec.version>1.15</commonscodec.version>
+        <junit.version>4.13.2</junit.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commonscodec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>${jaxwsrt.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>${jaxwsplugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>sampleWsdl</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <packageName>com.tun.sample</packageName>
+                            <!-- <wsdlFiles> -->
+                            <!-- <wsdlFile>${basedir}/src/jaxws/wsdl/sample.wsdl</wsdlFile> -->
+                            <!-- </wsdlFiles> -->
+                            <bindingDirectory>${basedir}/src/main/java</bindingDirectory>
+                            <verbose>true</verbose>
+                            <wsdlUrls>
+                                <wsdlUrl>http://www.dneonline.com/calculator.asmx?wsdl</wsdlUrl>
+                            </wsdlUrls>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
