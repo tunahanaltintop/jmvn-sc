@@ -1,5 +1,5 @@
 # jmvn-sc
-Sample Java SOAP Client with Maven Structure
+Sample Java SOAP Client with Maven Structure for Teaching Purpose
 
 <pre> Thanks for http://www.dneonline.com/calculator.asmx?wsdl </pre>
 
